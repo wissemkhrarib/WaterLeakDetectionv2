@@ -1,0 +1,77 @@
+﻿@model SensorViewModel
+
+<div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <br /><br /><br />
+                        <p class="text-info"><B>Create A new Sensor</B></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <script src="~/js/lottie-player.js"></script>
+                        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_1CKKK4.json" class="card-img-top" background="white" speed="1" loop autoplay></lottie-player>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create A new Sensor</h1>
+                            </div>
+                            <form asp-action="Create">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="SensorName" class="control-label  text-primary">Sensor Name</label>
+                                    <input asp-for="SensorName" class="form-control" />
+                                    <span asp-validation-for="SensorName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="DepartementId" class="control-label  text-primary">Departement</label>
+                                    <select asp-for="DepartementId" class="form-control"
+                                            asp-items="@(new SelectList(Model.Departements,"Id","Name"))"></select>
+                                    <span asp-validation-for="DepartementId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="IsOn" /> On
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-block btn-success" />
+                                </div>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" asp-controller="Departement" asp-action="Index">Back to home</a>
+                            </div>
+                            @section Scripts {
+                                <partial name="_Validation" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+<div class="row justify-content-center col-lg-12">
+
+    <div class="col-md-10">
+        <h1></h1>
+
+        <hr />
+
+
+    </div>
+</div>
+

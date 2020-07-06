@@ -1,0 +1,35 @@
+﻿@model SensorViewModel
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <h1 class="h3 col-lg-7 mb-4 text-gray-800">@Model.Sensor.Name</h1>
+    </div>
+    <div class="container bg-light">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Leak </th>
+                    <th>Occurrence Date</th>
+                    <th> Repaired</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.Sensor.Leaks != null)
+                    @foreach (var leak in Model.Sensor.Leaks)
+                    {
+                        <tr>
+                            <td> Leak </td>
+                            <td>@leak.OccurrenceDate</td>
+                            <td>@leak.IsRepared</td>
+                            
+                        </tr>
+                    }
+
+
+            </tbody>
+
+
+        </table>
+    </div>

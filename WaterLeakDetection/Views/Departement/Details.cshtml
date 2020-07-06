@@ -1,0 +1,67 @@
+﻿@model DepartementViewModel
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <h1 class="h3 col-lg-7 mb-4 text-gray-800">@Model.Departement.Name</h1>
+
+        <form class="col-lg-4" asp-controller="Departement" asp-action="Delete" asp-route-id="@Model.Departement.Id">
+            <button class="btn btn-block btn-danger">Delete</button>
+
+        </form>
+    </div>
+    <div class="container bg-light">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Name </th>
+                    <th> Current Flow Rate  <span class="badge badge-primary"> L/h  </span></th>
+                    <th> State  </th>
+                    <th> Turn On/Off </th>
+                    <th> More Informations</th>
+                    <th> Delete </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.Sensors != null)
+                    @foreach (var sensor in Model.Sensors)
+                    {
+                <tr id="@sensor.Id">
+                    <td>@sensor.Name</td>
+                    <td id="level_@sensor.Id">@sensor.CurrentLevel</td>
+                    <td><span id="status_@sensor.Id" class="spinner-grow text-success"></span></td>
+                    <td>
+                        @if (sensor.IsOn)
+                        {
+                            <button id="onoff_@sensor.Id" onclick="javascript:changeState(@sensor.Id);" class="btn btn-info rounded m-1">Turn Off</button>
+                        }
+                        else
+                        {
+                            <button id="onoff_@sensor.Id" onclick="javascript:changeState(@sensor.Id);" class="btn btn-info rounded m-1">Turn On</button>
+                        }
+                    </td>
+                    <td><a href="/Sensor/Details/@sensor.Id" class="btn btn-primary btn-block">More Informations</a></td>
+
+                    <td>
+                        <form>
+                            <a class="btn btn-block btn-danger" href="javascript:deleteSensor(@sensor.Id);">Delete</a>
+                        </form>
+                    </td>
+                </tr>
+                    }
+
+
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/jsFunctions/deletefunction.js"></script>
+<script src="~/jsFunctions/sweetalert.min.js"></script>
+<script>
+    setInterval(getData, 7000,@Model.Departement.Id);
+</script>
+

@@ -1,0 +1,1 @@
+﻿SELECT * FROM [WaterLeakDetection].[dbo].[Sensors]
