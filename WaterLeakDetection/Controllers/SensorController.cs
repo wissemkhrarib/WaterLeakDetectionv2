@@ -39,7 +39,7 @@ namespace WaterLeakDetection.Controllers
                 var leakDB = leakRepository.GetLastLeak(sensor);
                 sensor.CurrentLevel = item.CurrentLevel;
                 var leakState = leakDB != null ? leakDB.IsRepared : true;
-                if(sensor.CurrentLevel > 200 && leakState)
+                if(sensor.CurrentLevel > 200 )
                 {
                     sensor.Count += 1;
                 }
@@ -61,7 +61,7 @@ namespace WaterLeakDetection.Controllers
                     leakRepository.Update(leakDB);
                     sensor.Count = 0;
                 }
-                if (sensor.Count == 1 && leakState)
+                if (sensor.Count == 1)
                 {
                     var leak = new Leak { Sensor = sensor, OccurrenceDate = DateTime.Now };
                     leakRepository.Add(leak);
@@ -147,8 +147,8 @@ namespace WaterLeakDetection.Controllers
 
         public void SendEmail(string address, string subject, string message)
         {
-            string email = "wisse5906@gmail.com";
-            string password = "53109319";
+            string email = "waterleakdetectionmanager@gmail.com";
+            string password = "waterleakdetection";
 
             using (var msg = new MailMessage())
             {
